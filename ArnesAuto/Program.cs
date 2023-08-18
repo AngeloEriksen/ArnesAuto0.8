@@ -30,7 +30,7 @@ namespace ArnesAuto
                 ConsoleKeyInfo valg = Console.ReadKey();
                 Console.Clear();
 
-                //Simple Menu
+                //Simple start menu som 2 forekælige methods, og som viker via at læse Console.key input
                 if (valg.Key == ConsoleKey.D1)
                 {
                     NyKunde();
@@ -66,6 +66,7 @@ namespace ArnesAuto
 
             Kunder nyKunde = new Kunder();
 
+            // Her samler vi en masser information im kunden, som vi senere bruger til at oprette et object
             Console.Write("Indtast dit Fornavn: ");
             nyKunde.Fornavn = Console.ReadLine();
 
@@ -106,7 +107,7 @@ namespace ArnesAuto
                 }
             }
 
-            if ((DateTime.Now - nyKunde.FørsteRegistrering).TotalDays < 1825) // Check om bilen er under 5 år gammel (1825 dage)
+            if ((DateTime.Now - nyKunde.FørsteRegistrering).TotalDays < 1825) // Checker om bilen er under 5 år gammel (1825 dage)
             {
                 Console.WriteLine("Bilen er under 5 år gammel og skal ikke til syn.");
                 Console.WriteLine("Registreringen er nu færdiggjort.");
@@ -118,10 +119,11 @@ namespace ArnesAuto
                 while (Forkertsvar2)
                 {
                     Console.Write("Indtast datoen for sidste syn dd-MM-yyyy: ");
+                   
                     if (DateTime.TryParseExact(Console.ReadLine(), "dd-MM-yyyy", null, System.Globalization.DateTimeStyles.None, out DateTime sidsteSynsdato))
                     {
                         nyKunde.SidsteSynsdato = sidsteSynsdato;
-                        if ((DateTime.Now - nyKunde.SidsteSynsdato).TotalDays > 730) // Check om der er gået mere end 2 år siden sidste syn (730 dage)
+                        if ((DateTime.Now - nyKunde.SidsteSynsdato).TotalDays > 730) // Checker om der er gået mere end 2 år siden sidste syn (730 dage)
                         {
                             Console.WriteLine("Bilen skal til syn.");
                             Console.WriteLine("Registreringen er nu færdiggjort.");
@@ -157,8 +159,10 @@ namespace ArnesAuto
             Console.Write("Indtast nummerpladen: ");
             string NummerSøg = Console.ReadLine();
 
+            //her sætter vi verdien af fundet kunde til null, så vi senere kan
             Kunder FundetKunde = null;
 
+            //
             foreach (Kunder kunde in kundeListe)
             {
                 if (kunde.Nummerplade == NummerSøg)
