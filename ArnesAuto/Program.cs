@@ -2,12 +2,13 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Runtime.ConstrainedExecution;
 
 namespace ArnesAuto
 {
     class program
     {
-        List<Kunder> kundeListe = new List<Kunder>();
+        static List<Kunder> kundeListe = new List<Kunder>();
         static void Main(string[] args)
         {
             Console.Title = "ArnesAuto";
@@ -37,7 +38,8 @@ namespace ArnesAuto
                 }
                 else if (valg.Key == ConsoleKey.D2)
                 {
-                    Console.WriteLine("Kontaktinformation");
+                    Kundesøg();
+                    Console.Clear();
                 }
                 else if (valg.Key == ConsoleKey.D3)
                 {
@@ -141,8 +143,47 @@ namespace ArnesAuto
                 }
             }
 
+            //Sad i flere timer og kunne ikke forstå hvor jeg ikke kunne se kunderne
+            // manglkede den her ene linje kode!..
+            kundeListe.Add(nyKunde);
+
             Console.ReadKey();
 
+
+        }
+
+        static void Kundesøg()
+        {
+            Console.Write("Indtast nummerpladen: ");
+            string NummerSøg = Console.ReadLine();
+
+            Kunder FundetKunde = null;
+
+            foreach (Kunder kunde in kundeListe)
+            {
+                if (kunde.Nummerplade == NummerSøg)
+                {
+                    FundetKunde = kunde;
+                    break;
+                }
+            }
+
+            //Så længe FundetKunde ikke er null udskriver den information om kunden.
+            if (FundetKunde != null)
+            {
+                Console.WriteLine($"Kunde kontaktinformation:");
+                Console.WriteLine($"Fornavn: {FundetKunde.Fornavn}");
+                Console.WriteLine($"Efternavn: {FundetKunde.Efternavn}");
+                Console.WriteLine($"Telefonnummer: {FundetKunde.Telefonnummer}");
+            }
+            else
+            {
+                Console.WriteLine("Der er ingen kunder med denne Nummerplade");
+            }
+
+            Console.WriteLine("Tryk på en vilkårlig tast for at komme tilbage til start menuen");
+            Console.ReadKey();
+            Console.Clear();
         }
     }
 }
