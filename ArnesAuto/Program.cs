@@ -110,7 +110,7 @@ namespace ArnesAuto
             if ((DateTime.Now - nyKunde.FørsteRegistrering).TotalDays < 1825) // Checker om bilen er under 5 år gammel (1825 dage)
             {
                 Console.WriteLine("Bilen er under 5 år gammel og skal ikke til syn.");
-                Console.WriteLine("Registreringen er nu færdiggjort.");
+                Console.WriteLine("Registreringen er nu færdig.");
                 Console.WriteLine("Tryk på en vilkårlig-Tast for at kommer tilbage til start menuen");
             }
             else
