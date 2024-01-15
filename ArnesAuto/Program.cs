@@ -15,6 +15,7 @@ namespace ArnesAuto
 
 
             /// <summary>
+            /// Git Test
             // Endless while Loop med bool til af afslutte programmet
             // Fandt ud af efter jeg bare kunne sætte'break;' ind, men nu fik den en bool til det.
             /// </summary>
